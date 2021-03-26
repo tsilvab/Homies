@@ -12,8 +12,7 @@ function getTeleportApi() {
 $('#teleport').on('click', getTeleportApi);
 
 
-function getApi(e) {
-    e.preventDefault();
+function getApi() {
     let requestUrl = "https://data.usajobs.gov/api/search?Keyword=Software&LocationName=reston%20va&?ResultsPerPage=10"
     fetch(requestUrl, {
         headers: {
