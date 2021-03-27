@@ -1,20 +1,18 @@
-// function getApi() {
-//     let requestUrl = "https://api.teleport.org/api/urban_areas/slug:boston/scores/"
-//     fetch(requestUrl) 
-//       .then(function (response) {
-//           return response.json();
-//       }
-//       )
-//       .then(function (data) {
-//         console.log(data);
-//       }) }
-// getApi()
-// //jquery event listener to trigger get api function on click
-// $('.button').on('click', getApi);
+function getTeleportApi() {
+    let tprequestUrl = "https://api.teleport.org/api/urban_areas/slug:boston/scores/"
+    fetch(tprequestUrl) 
+      .then(function (response) {
+          return response.json();
+      }
+      )
+      .then(function (data) {
+        console.log(data);
+      }) }
+//jquery event listener to trigger get api function on click
+$('#teleport').on('click', getTeleportApi);
 
 
-function getApi(event) {
-    event.preventDefault();
+function getApi() {
     let requestUrl = "https://data.usajobs.gov/api/search?Keyword=Software&LocationName=reston%20va&?ResultsPerPage=10"
     fetch(requestUrl, {
         headers: {
@@ -30,4 +28,4 @@ function getApi(event) {
             console.log(data);
         })
 }
-$('.button').on('click', getApi);
+$('#search-now').on('click', getApi);
