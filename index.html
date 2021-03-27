@@ -38,7 +38,7 @@
   <div class="large-6 columns"></div>
   <p>Intro/instructions go here</p>
   <div class="callout secondary">
-    <form>
+    <form id="skills-form">
       <div class="row">
         <div class="small-12 columns">
           <label>Enter a Job Keyword
@@ -47,10 +47,10 @@
         </div>
         <div class="small-12 columns">
           <label>Pick a Location
-            <input type="number" placeholder="auto complete 25 major cities">
+            <input type="text" placeholder="auto complete 25 major cities" autocomplete="on" id ="skils">
           </label>
-          <button type="button" id="search-now" class="button">Test USA Jobs API</button>
-          <button type="button" id="teleport" class="button">Test Teleport API</button>
+          <button type="button" id="search-now" class="button">Search</button>
+          <!-- <button type="button" id="teleport" class="button">Test Teleport API</button> -->
           
         </div>
       </div>
