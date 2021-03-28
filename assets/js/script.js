@@ -7,6 +7,7 @@ const inputLocation = document.getElementById("major-cities");
 const searchBox = $('#search-now');
 let teleportUrl = "https://api.teleport.org/api/urban_areas/slug:";
 let usajobsUrl = "https://data.usajobs.gov/api/search?Keyword=";
+let outputLocation2 = "";
 
 
 
@@ -33,6 +34,7 @@ $(function () {
         "Richmond, Virginia",
         "Salt Lake City, Utah",
         "San Antonio, Texas", 
+        "San Jose, California",
         "San Francisco, California", 
         "Seattle, Washington", 
         "Tampa, Florida",
@@ -63,8 +65,20 @@ inputLocation.value = '';
 // //construct URL for USA Jobs API
 let requestUrl1 = (usajobsUrl + outputKeyword + "&LocationName=" + outputLocation);
 
-// //construct URL for Teleport API by first manipulating the outputLocation var to remove coma and everything after it; otherwise teleport url would fail. This worked for 14 of 25 cities. 11 need special handing including DC, Tampa, SF and 8 cities with multi word names
-let outputLocation2 = outputLocation.substring(0, outputLocation.indexOf(','));
+// //construct URL for Teleport API by first manipulating the outputLocation var to remove coma and everything after it using substring string method; otherwise teleport url would fail. This worked for 14 of 25 cities. For 8 cities with multi word names, we added a .replace string method to replace the space with - which teleport url requires.  To handle DC, Tampa, SF which have weird URLS that are not exactly dervied from the name, we created three if else statements 
+if (outputLocation === "san francisco, california") {
+    outputLocation2 = "san-francisco-bay-area";    
+}
+else if (outputLocation === "tampa, florida") {
+    outputLocation2 = "tampa-bay-area";
+}
+else if (outputLocation === "washington, district of columbia") {
+    outputLocation2 = "washington-dc"
+}
+else {
+    outputLocation2 = outputLocation.substring(0, outputLocation.indexOf(',')).replace(/ /,"-").replace(/ /,"-");
+}
+
 let requestUrl2 = (teleportUrl + outputLocation2 + "/scores/");
 //test url for usa jobs api
 //test url for teleport api
