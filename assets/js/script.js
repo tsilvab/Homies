@@ -120,3 +120,13 @@ getApi2()
 
 //fire search on click. Consider changing to submit to allow searching with Enter or click
 $(searchBox).on('click', formSubmitHandler)
+
+//proof of concept to populate job search table with data using jquery. Next step is to pull data from jobs api and use forloop with function below similar to weather project
+function appendTable () {
+    let jobTitle = "Software Engineer";
+    let jobAgency = "FDIC";
+    let jobLink = "Click me"
+    $('#job-table').append('<tr><td>'+jobTitle+'</td><td>'+jobAgency+'</td><td>'+jobLink+'</td></tr>');
+}
+appendTable()
+// markup = "<tr><td> + information + </td></tr>"
