@@ -12,23 +12,32 @@ let usajobsUrl = "https://data.usajobs.gov/api/search?Keyword=";
 
 $(function () {
 
-    let majorCities = ["Atlanta,GA", "Austin,TX", "Washington,DC", "Tampa,FL", "Seattle,WA", "San Francisco,CA", "San Antonio, TX", "Salt Lake City",
-        "Richmond, VA",
-        "Raleigh, NC",
-        "Pittsburgh, PA",
-        "Phoenix, AZ",
-        "Philadelphia, PA",
-        "Orlando, FL",
-        "Omaha, NE",
-        "Oklahoma City, OK",
-        "New York, NY",
-        "New Orleans, LA",
-        "Nashville, TN",
-        "Los Angeles, CA",
-        "Las Vegas, NV",
-        "Dallas, TX",
-        "Denver, CO",
-        "Chicago, Il"]
+    let majorCities = [
+        "Atlanta, Georgia", 
+        "Austin, Texas",
+        "Chicago, Illinois", 
+        "Dallas, Texas",
+        "Denver, Colorado",
+        "Las Vegas, Nevada",
+        "Los Angeles, California",
+        "Nashville, Tennessee",
+        "New Orleans, Louisiana",
+        "New York, New York",
+        "Oklahoma City, Oklahoma",
+        "Omaha, Nebraska",
+        "Orlando, Florida",
+        "Philadelphia, Pennsylvania",
+        "Phoenix, Arizona",
+        "Pittsburgh, Pennsylvania",
+        "Raleigh, North Carolina",
+        "Richmond, Virginia",
+        "Salt Lake City, Utah",
+        "San Antonio, Texas", 
+        "San Francisco, California", 
+        "Seattle, Washington", 
+        "Tampa, Florida",
+        "Washington, District of Columbia",
+    ]
 
     $('#major-cities').autocomplete({
         source: majorCities,
@@ -53,18 +62,18 @@ inputLocation.value = '';
 
 // //construct URL for USA Jobs API
 let requestUrl1 = (usajobsUrl + outputKeyword + "&LocationName=" + outputLocation);
-let requestUrl2 = (teleportUrl + outputLocation + "/scores/");
+
+// //construct URL for Teleport API by first manipulating the outputLocation var to remove coma and everything after it; otherwise teleport url would fail. This worked for 14 of 25 cities. 11 need special handing including DC, Tampa, SF and 8 cities with multi word names
+let outputLocation2 = outputLocation.substring(0, outputLocation.indexOf(','));
+let requestUrl2 = (teleportUrl + outputLocation2 + "/scores/");
 //test url for usa jobs api
-console.log(requestUrl1);
 //test url for teleport api
-console.log(requestUrl2);
 //call 2 x api functions
 getApi1()
 getApi2()
 
     // USA Jobs API
     function getApi1() {
-        // let requestUrl = "https://data.usajobs.gov/api/search?Keyword=Software&LocationName=reston%20va&?ResultsPerPage=10"
         fetch(requestUrl1, {
             headers: {
                 'User-Agent': 'alexward1899@gmail.com',
@@ -82,7 +91,6 @@ getApi2()
 
        // Teleport API
        function getApi2() {
-        // let requestUrl = "https://data.usajobs.gov/api/search?Keyword=Software&LocationName=reston%20va&?ResultsPerPage=10"
         fetch(requestUrl2)
             .then(function (response) {
                 return response.json();
