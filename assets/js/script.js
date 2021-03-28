@@ -56,10 +56,8 @@ $(function () {
 function formSubmitHandler (event) {
 event.preventDefault();
 let outputKeyword = inputKeyword.value.trim();
-console.log(outputKeyword);
 inputKeyword.value = '';
 let outputLocation = inputLocation.value.trim().toLowerCase();
-console.log(outputLocation);
 inputLocation.value = '';
 
 // //construct URL for USA Jobs API
@@ -104,14 +102,14 @@ getApi2()
         let jobTitle = (data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor.PositionTitle);
         let jobAgency = (data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor.OrganizationName);
         let jobLink = (data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor.PositionURI)
-        //use jquery to format link as url
-        let jobLinkFormatted = document.createElement('a');;
-        jobLinkFormatted.href = jobLink;
-        jobLinkFormatted.target = '_blank';
-        jobLinkFormatted.innerText = "View Job";
-        $('#job-table').append('<tr><td>'+jobTitle+'</td><td>'+jobAgency+'</td><td>'+$(jobLinkFormatted)+'</td></tr>');
+        //*******************use jquery to format link as url. UNSUCCESSFUL//*******************
+        $('#job-table').append('<tr><td>'+jobTitle+'</td><td>'+jobAgency+'</td><td>'+jobLink+'</td></tr>');
+        $('.label primary').append(jobTitle);
+        $('.job-agency').append(jobAgency);
+        $('.job-link').append(jobLink);
             })
     }
+   
 
        // Teleport API
        function getApi2() {
