@@ -80,8 +80,7 @@ else {
 }
 
 let requestUrl2 = (teleportUrl + outputLocation2 + "/scores/");
-//test url for usa jobs api
-//test url for teleport api
+
 //call 2 x api functions
 getApi1()
 getApi2()
@@ -100,6 +99,17 @@ getApi2()
             )
             .then(function (data) {
                 console.log(data);
+
+        //capture sample search result from index 0 and paint first table row with title, agency and url. Works great except for URL which needs more work
+        let jobTitle = (data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor.PositionTitle);
+        let jobAgency = (data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor.OrganizationName);
+        let jobLink = (data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor.PositionURI)
+        //use jquery to format link as url
+        let jobLinkFormatted = document.createElement('a');;
+        jobLinkFormatted.href = jobLink;
+        jobLinkFormatted.target = '_blank';
+        jobLinkFormatted.innerText = "View Job";
+        $('#job-table').append('<tr><td>'+jobTitle+'</td><td>'+jobAgency+'</td><td>'+$(jobLinkFormatted)+'</td></tr>');
             })
     }
 
