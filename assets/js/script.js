@@ -98,6 +98,19 @@ getApi2()
             .then(function (data) {
                 console.log(data);
 
+            //testing NEW for loop
+            
+            let searchResults = data.SearchResult.SearchResultItems
+            console.log(`lenght of search results is ${searchResults.length}`)
+            for (let i = 0; i < searchResults.length; i++) {
+                let jobsTitle = searchResults[i].MatchedObjectDescriptor.PositionTitle
+                console.log(`job title is ${jobsTitle}`)
+                let jobsAgency = searchResults[i].MatchedObjectDescriptor.OrganizationName
+                console.log(`job agency is ${jobsAgency}`)
+                let jobsUrl = searchResults[i].MatchedObjectDescriptor.PositionURI
+                console.log(`job url is ${jobsUrl}`)
+            }
+
         //capture sample search result from index 0 and paint first table row with title, agency and url. Works great except for URL which needs more work
         let jobTitle = (data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor.PositionTitle);
         let jobAgency = (data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor.OrganizationName);
