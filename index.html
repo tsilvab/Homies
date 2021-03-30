@@ -40,127 +40,92 @@
       <br>
 
       <div class="row">
-        <div class="large-6 columns"></div>
-        <p>Intro/instructions go here</p>
-        <div class="callout secondary">
-          <form id="skills-form">
-            <div class="row">
-              <div class="small-12 columns">
-                <label>Enter a Job Keyword
-                  <input type="text" placeholder="e.g. Software Engineer" id="datepicker">
-                </label>
-              </div>
-              <div class="small-12 columns">
-                <label>Pick a Location
-                  <input type="text" placeholder="auto complete 25 major cities" autocomplete="on" id="skill-name">
-                </label>
-                <button type="button" id="search-now" class="button">Search</button>
-                <!-- <button type="button" id="teleport" class="button">Test Teleport API</button> -->
 
-              </div>
-              <!-- /Navigation -->
+        <div class="small-12 large-6 columns">
+          <label><i class='fa fa-search'></i> Keyword
+            <input type="text" id="input-keyword" placeholder="e.g. Software Engineer">
+          </label>
+        </div>
 
-              <br>
+        <div class="small-12 large-6 columns">
+          <label> <i class='fas fa-map-marker-alt'></i> Location
 
-              <div class="row">
+            <input type="text" placeholder="auto complete 25 major cities" autocomplete="on" id="major-cities">
+          </label>
 
-                <p>Intro/instructions go here</p>
-                <div class="callout secondary">
-                  <form id="form">
-                    <div class="row">
-                      <div class="small-12 large-6 columns">
-                        <label><i class='fa fa-search'></i> Keyword
-                          <input type="text" id="input-keyword" placeholder="e.g. Software Engineer">
-                        </label>
-                      </div>
-                      <div class="small-12 large-6 columns">
-                        <label> <i class='fas fa-map-marker-alt'></i> Location
-                          <input type="text" placeholder="auto complete 25 major cities" autocomplete="on"
-                            id="major-cities">
-                        </label>
+          <!-- <button type="button" id="teleport" class="button">Test Teleport API</button> -->
+          <div class="search-button">
+            <button type="button" id="search-now" class="button">Search</button>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+  <!-- <hr>   -->
+  <div class="row">
+    <div class="large-6 small-12 columns">
+      <div id="job-results" class="callout secondary">
+        <p>Testing Job search results in Table</p>
+        <div class="row">
+          <div class="columns">
+            <table id="job-table" class="unstriped">
+              <thead>
+                <tr>
+                  <th id="job-title" width="300">Job Title</th>
+                  <th id="job-agency" width="150">Agency</th>
+                  <th id="job-link" width="150">Link</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </div>
+    </div>
+    <div class="large-6 small-12 columns">
+      <div id="qof-results" class="callout secondary">
+        <p>Quality of life results go here</p>
+        <div class="row">
+          <div class="columns">
+            <table class="unstriped">
+              <thead>
+                <tr>
+                  <th id="quality-category-name" width="300">Category</th>
+                  <th id="quality-category-color" width="300">Color</th>
 
-                        <!-- <button type="button" id="teleport" class="button">Test Teleport API</button> -->
-                        <div class="search-button">
-                          <button type="button" id="search-now" class="button">Search</button>
-                        </div>
-                      </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- <hr>   -->
-            <div class="row">
-              <div class="large-6 small-12 columns">
-                <div id="job-results" class="callout secondary">
-                  <p>Testing Job search results in Table</p>
-                  <div class="row">
-                    <div class="columns">
-                      <table id="job-table" class="unstriped">
-                        <thead>
-                          <tr>
-                            <th id="job-title" width="300">Job Title</th>
-                            <th id="job-agency" width="150">Agency</th>
-                            <th id="job-link" width="150">Link</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- <tr>
+
+                  <th id="quality-category-score" width="300">Score</th>
+
+                </tr>
+              </thead>
+              <tbody id="quality-of-life-table">
+                <!-- <tr>
+>>>>>>> 900bb274fc5d3144ecacc4724f3ccefb722f2ed0
                   <td>Content Goes Here</td>
                   <td>Content Goes Here</td>
                   <td>Content Goes Here</td>
                 </tr> -->
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="row">Testing Job Search Results in DIV
-                    <hr>
-                    <div class="label primary">Primary Label</div>
-                    <div class="label secondary">Primary Label</div>
-                    <div class="label success">Primary Label</div>
-                    <!-- <span class="label alert">Alert Label</span>
-          <span class="label warning">Warning Label</span> -->
-                  </div>
-                </div>
-              </div>
-              <div class="large-6 small-12 columns">
-                <div id="qof-results" class="callout secondary">
-                  <p>Quality of life results go here</p>
-                  <div class="row">
-                    <div class="columns">
-                      <table id="quality-of-life-table" class="unstriped">
-                        <thead>
-                          <tr>
-                            <th id="quality-category-name" width="300">Category</th>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-
-                            <th id="quality-category-score" width="300">Score</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- <tr>
-                  <td>Content Goes Here</td>
-                  <td>Content Goes Here</td>
-                  <td>Content Goes Here</td>
-                </tr> -->
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="navbar">
-                  <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
-                  <a href="https://www.twitter.com/" class="fa fa-twitter"></a>
-                  <a href="https://www.linkedin.com/" class="fa fa-linkedin"></a>
-                  <a href="#homies" class="homies">Homies LLC &copy 2021</a>
-                </div>
-                <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-                <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-                <script>
-                  $(document).foundation();
-                </script>
+      <div class="navbar">
+        <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+        <a href="https://www.twitter.com/" class="fa fa-twitter"></a>
+        <a href="https://www.linkedin.com/" class="fa fa-linkedin"></a>
+        <a href="#homies" class="homies">Homies LLC &copy 2021</a>
+      </div>
+      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+      <script>
+        $(document).foundation();
+      </script>
 
 </body>
 
