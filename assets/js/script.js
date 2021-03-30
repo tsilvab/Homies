@@ -77,7 +77,7 @@ function formSubmitHandler(event) {
 
   //call 2 x api functions
   getApi1();
-  getQualityOfLife();
+  getApi2();
 
   // USA Jobs API
   function getApi1() {
@@ -120,7 +120,7 @@ function formSubmitHandler(event) {
   }
 
   // Teleport API
-  function getQualityOfLife() {
+  function getApi2() {
     fetch(requestUrl2)
       .then(function (response) {
         return response.json();
@@ -130,14 +130,20 @@ function formSubmitHandler(event) {
 
         console.log(data.categories.length);
 
+        $("#quality-of-life-table").empty();
+
         for (let i = 0; i < data.categories.length; i++) {
           console.log(data.categories[i].name);
+
           let categoryName = data.categories[i].name;
+          let categoryColor = data.categories[i].color;
 
           let categoryScore = data.categories[i].score_out_of_10.toFixed(2);
           $("#quality-of-life-table").append(
-            "<tr><td>" +
+            `<tr style='background-color: ${categoryColor}'><td>` +
               categoryName +
+              "</td>><td>" +
+              categoryColor +
               "</td>><td>" +
               categoryScore +
               "</td>></tr>"
@@ -151,21 +157,3 @@ function formSubmitHandler(event) {
 
 //fire search on click. Consider changing to submit to allow searching with Enter or click
 $(searchBox).on("click", formSubmitHandler);
-
-//proof of concept to populate job search table with data using jquery. Next step is to pull data from jobs api and use forloop with function below similar to weather project
-function appendTable() {
-  let jobTitle = "Software Engineer";
-  let jobAgency = "FDIC";
-  let jobLink = "Click me";
-  $("#job-table").append(
-    "<tr><td>" +
-      jobTitle +
-      "</td><td>" +
-      jobAgency +
-      "</td><td>" +
-      jobLink +
-      "</td></tr>"
-  );
-}
-appendTable();
-// markup = "<tr><td> + information + </td></tr>"
