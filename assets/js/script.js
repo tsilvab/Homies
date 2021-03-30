@@ -64,80 +64,95 @@ if (outputLocation === "san francisco, california") {
 }
 else if (outputLocation === "tampa, florida") {
     outputLocation2 = "tampa-bay-area";
-}
-else if (outputLocation === "washington, district of columbia") {
-    outputLocation2 = "washington-dc"
-}
-else {
-    outputLocation2 = outputLocation.substring(0, outputLocation.indexOf(',')).replace(/ /,"-").replace(/ /,"-");
-}
+  } else if (outputLocation === "washington, district of columbia") {
+    outputLocation2 = "washington-dc";
+  } else {
+    outputLocation2 = outputLocation
+      .substring(0, outputLocation.indexOf(","))
+      .replace(/ /, "-")
+      .replace(/ /, "-");
+  }
 
-// //construct URL for Teleport API
-let requestUrl2 = (teleportUrl + outputLocation2 + "/scores/");
+  let requestUrl2 = teleportUrl + outputLocation2 + "/scores/";
 
-//call 2 x api functions
-getApi1()
-getApi2()
+  //call 2 x api functions
+  getApi1();
+  getApi2();
 
-    // USA Jobs API function
-    function getApi1() {
-        fetch(requestUrl1, {
-            headers: {
-                'User-Agent': 'alexward1899@gmail.com',
-                'Authorization-Key': 'vrqNHvNHvAnvDRpuB8CPO4FGUP9dUL1XqLHzzIoBIqs=',
-            }
-        })
-            .then(function (response) {
-                return response.json();
-            }
-            )
-            .then(function (data) {
-                console.log(data);
+  // USA Jobs API
+  function getApi1() {
+    fetch(requestUrl1, {
+      headers: {
+        "User-Agent": "alexward1899@gmail.com",
+        "Authorization-Key": "vrqNHvNHvAnvDRpuB8CPO4FGUP9dUL1XqLHzzIoBIqs=",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
 
-            //For Loop to capture job title, agency and url          
-            let searchResults = data.SearchResult.SearchResultItems;
-            for (let i = 0; i < searchResults.length; i++) {
-                let jobsTitle = searchResults[i].MatchedObjectDescriptor.PositionTitle;
-                let jobsAgency = searchResults[i].MatchedObjectDescriptor.OrganizationName;
-                jobsUrl = searchResults[i].MatchedObjectDescriptor.PositionURI;
+        //capture sample search result from index 0 and paint first table row with title, agency and url. Works great except for URL which needs more work
+        let jobTitle =
+          data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor
+            .PositionTitle;
+        let jobAgency =
+          data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor
+            .OrganizationName;
+        let jobLink =
+          data.SearchResult.SearchResultItems[0].MatchedObjectDescriptor
+            .PositionURI;
+        //*******************use jquery to format link as url. UNSUCCESSFUL//*******************
+        $("#job-table").append(
+          "<tr><td>" +
+            jobTitle +
+            "</td><td>" +
+            jobAgency +
+            "</td><td>" +
+            jobLink +
+            "</td></tr>"
+        );
+        $(".label primary").append(jobTitle);
+        $(".job-agency").append(jobAgency);
+        $(".job-link").append(jobLink);
+      });
+  }
 
-            //Render job title, agency to job search results table. Render url in next function so we build a friendly url
-            $('#job-table').append('<tr><td>'+jobsTitle+'</td><td>'+jobsAgency+'</td><td class="link-td">'+jobsUrl+'</td></tr>');
-           
-            }
-            // --------------TRYING TO SET FRIENDLY URL for jobsUrl----------------
-            //manged to create a foundation css button but unable to properly assign value to each
-            function setUrl () {
-                let link = $('<button type="button" id="view-job" class="success button" <a href="">View Job</a></button>');
-                link.attr("value", jobsUrl)
-                link.attr("href", jobsUrl)
-                // link.attr("href", jobsUrl)
-                // link.attr("text", "View Job")
-                $('.link-td').append(link);
-                $('#view-job').on('click', function () {
-                    let buttonValue = $(this).val();
-                    console.log(buttonValue);
-                })
-                // setTd.$(this)
-            }
-            setUrl ()
+  // Teleport API
+  function getApi2() {
+    fetch(requestUrl2)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log("My Quality of Life");
 
+        console.log(data.categories.length);
 
-            })
-    }
-   
+        $("#quality-of-life-table").empty();
 
-       // Teleport API
-       function getApi2() {
-        fetch(requestUrl2)
-            .then(function (response) {
-                return response.json();
-            }
-            )
-            .then(function (data) {
-                console.log(data);
-            })
-    }
+        for (let i = 0; i < data.categories.length; i++) {
+          console.log(data.categories[i].name);
+
+          let categoryName = data.categories[i].name;
+          let categoryColor = data.categories[i].color;
+
+          let categoryScore = data.categories[i].score_out_of_10.toFixed(2);
+          $("#quality-of-life-table").append(
+            `<tr style='background-color: ${categoryColor}'><td>` +
+              categoryName +
+              "</td>><td>" +
+              categoryColor +
+              "</td>><td>" +
+              categoryScore +
+              "</td>></tr>"
+          );
+        }
+
+        console.log(data);
+      });
+  }
 
 }
 
