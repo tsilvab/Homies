@@ -1,16 +1,14 @@
 // var formEl = $('#skills-form');
-let formElement = $('#form');
-let inputElement = $('#major-cities');
+let formElement = $("#form");
+let inputElement = $("#major-cities");
 // var nameInputEl = $('#skill-name');
 const inputKeyword = document.getElementById("input-keyword");
 const inputLocation = document.getElementById("major-cities");
-const searchBox = $('#search-now');
+const searchBox = $("#search-now");
 let teleportUrl = "https://api.teleport.org/api/urban_areas/slug:";
 let usajobsUrl = "https://data.usajobs.gov/api/search?Keyword=";
 let outputLocation2 = "";
 let jobsUrl = "";
-
-
 
 // jquery function to auto complete the Location field with a predefined list of 25 locations
 $(function () {
@@ -124,6 +122,7 @@ getApi2()
             }
             setUrl ()
 
+
             })
     }
    
@@ -139,10 +138,10 @@ getApi2()
                 console.log(data);
             })
     }
+
 }
 
- 
-
 //fire search on click. Consider changing to submit to allow searching with Enter or click
-$(searchBox).on('click', formSubmitHandler)
+$(searchBox).on("click", formSubmitHandler);
+
 
