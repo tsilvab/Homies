@@ -37,17 +37,17 @@
 <br>
 
 <div class="row">
-  <div class="large-2 columns"></div>
+ 
   <p>Intro/instructions go here</p>
   <div class="callout secondary">
     <form id="form">
       <div class="row">
-        <div class="small-5 columns">
+        <div class="small-12 large-6 columns" >
           <label><i class='fa fa-search'></i> Keyword
             <input type="text" id="input-keyword" placeholder="e.g. Software Engineer">
           </label>
         </div>
-        <div class="small-5 columns">
+        <div class="small-12 large-6 columns">
           <label> <i class='fas fa-map-marker-alt'></i> Location
             <input type="text" placeholder="auto complete 25 major cities" autocomplete="on" id ="major-cities">
           </label>
@@ -63,7 +63,7 @@
 </div>
 <!-- <hr>   -->
 <div class="row">
-    <div class="medium-5 columns">
+    <div class="large-6 small-12 columns">
       <div id="job-results" class="callout secondary">
         <p>Testing Job search results in Table</p>
         <div class="row">
@@ -96,9 +96,31 @@
         </div>             
       </div>
     </div>
-    <div class="medium-5 columns">
+    <div class="large-6 small-12 columns">
       <div id="qof-results" class="callout secondary">
         <p>Quality of life  results go here</p>
+        <div class="row">
+          <div class="columns">
+            <table id="quality-of-life-table" class="unstriped">
+              <thead>
+                <tr>
+                  <th id="quality-category-name" width="300">Category</th>
+                 
+           
+                  <th id="quality-category-score" width="300">Score</th>
+           
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr>
+                  <td>Content Goes Here</td>
+                  <td>Content Goes Here</td>
+                  <td>Content Goes Here</td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
     </div>
   </div>
 
