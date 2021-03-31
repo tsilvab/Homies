@@ -1,3 +1,6 @@
+* {
+  padding: 1px;
+}
 .cover-photo {
   object-fit: cover;
   height: 200px;
