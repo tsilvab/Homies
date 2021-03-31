@@ -1,12 +1,10 @@
-// var formEl = $('#skills-form');
-let formElement = $("#form");
-let inputElement = $("#major-cities");
-// var nameInputEl = $('#skill-name');
+const formElement = $("#form");
+const inputElement = $("#major-cities");
 const inputKeyword = document.getElementById("input-keyword");
 const inputLocation = document.getElementById("major-cities");
 const searchBox = $("#search-now");
-let teleportUrl = "https://api.teleport.org/api/urban_areas/slug:";
-let usajobsUrl = "https://data.usajobs.gov/api/search?Keyword=";
+const teleportUrl = "https://api.teleport.org/api/urban_areas/slug:";
+const usajobsUrl = "https://data.usajobs.gov/api/search?Keyword=";
 let outputLocation2 = "";
 let jobsUrl = "";
 let link = null;
@@ -150,4 +148,14 @@ function formSubmitHandler(event) {
 //fire search on click. Consider changing to submit to allow searching with Enter or click
 $(searchBox).on("click", formSubmitHandler);
 
-
+// Execute a function when the user releases a key on the keyboard
+var input = document.getElementById("major-cities");
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("search-now").click();
+  }
+});
