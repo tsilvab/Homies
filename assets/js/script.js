@@ -18,7 +18,6 @@ $(function () {
     "Atlanta, Georgia",
     "Austin, Texas",
     "Chicago, Illinois",
->>>>>>> 900bb274fc5d3144ecacc4724f3ccefb722f2ed0
     "Dallas, Texas",
     "Denver, Colorado",
     "Las Vegas, Nevada",
@@ -35,38 +34,36 @@ $(function () {
     "Raleigh, North Carolina",
     "Richmond, Virginia",
     "Salt Lake City, Utah",
+    "San Antonio, Texas",
+    "San Jose, California",
+    "San Francisco, California",
+    "Seattle, Washington",
+    "Tampa, Florida",
+    "Washington, District of Columbia",
+  ]
 
-=======
-        "San Antonio, Texas", 
-        "San Jose, California",
-        "San Francisco, California", 
-        "Seattle, Washington", 
-        "Tampa, Florida",
-        "Washington, District of Columbia",
-    ]
-
-    $('#major-cities').autocomplete({
-        source: majorCities,
-    });
+  $('#major-cities').autocomplete({
+    source: majorCities,
+  });
 })
 
 
 //function to capture both keyword and location search inputs and then construct two urls one for each api and later run those get api functions in sub functions
-function formSubmitHandler (event) {
-event.preventDefault();
-let outputKeyword = inputKeyword.value.trim();
-inputKeyword.value = '';
-let outputLocation = inputLocation.value.trim().toLowerCase();
-inputLocation.value = '';
+function formSubmitHandler(event) {
+  event.preventDefault();
+  let outputKeyword = inputKeyword.value.trim();
+  inputKeyword.value = '';
+  let outputLocation = inputLocation.value.trim().toLowerCase();
+  inputLocation.value = '';
 
-// //construct URL for USA Jobs API
-let requestUrl1 = (usajobsUrl + outputKeyword + "&LocationName=" + outputLocation);
+  // //construct URL for USA Jobs API
+  let requestUrl1 = (usajobsUrl + outputKeyword + "&LocationName=" + outputLocation);
 
-// //construct URL for Teleport API by first manipulating the outputLocation var to remove coma and everything after it using substring string method; otherwise teleport url would fail. This worked for 14 of 25 cities. For 8 cities with multi word names, we added a .replace string method to replace the space with - which teleport url requires.  To handle DC, Tampa, SF which have weird URLS that are not exactly dervied from the name, we created three if else statements 
-if (outputLocation === "san francisco, california") {
-    outputLocation2 = "san-francisco-bay-area";    
-}
-else if (outputLocation === "tampa, florida") {
+  // //construct URL for Teleport API by first manipulating the outputLocation var to remove coma and everything after it using substring string method; otherwise teleport url would fail. This worked for 14 of 25 cities. For 8 cities with multi word names, we added a .replace string method to replace the space with - which teleport url requires.  To handle DC, Tampa, SF which have weird URLS that are not exactly dervied from the name, we created three if else statements 
+  if (outputLocation === "san francisco, california") {
+    outputLocation2 = "san-francisco-bay-area";
+  }
+  else if (outputLocation === "tampa, florida") {
     outputLocation2 = "tampa-bay-area";
   } else if (outputLocation === "washington, district of columbia") {
     outputLocation2 = "washington-dc";
@@ -110,12 +107,12 @@ else if (outputLocation === "tampa, florida") {
         //*******************use jquery to format link as url. UNSUCCESSFUL//*******************
         $("#job-table").append(
           "<tr><td>" +
-            jobTitle +
-            "</td><td>" +
-            jobAgency +
-            "</td><td>" +
-            jobLink +
-            "</td></tr>"
+          jobTitle +
+          "</td><td>" +
+          jobAgency +
+          "</td><td>" +
+          jobLink +
+          "</td></tr>"
         );
         $(".label primary").append(jobTitle);
         $(".job-agency").append(jobAgency);
@@ -145,26 +142,20 @@ else if (outputLocation === "tampa, florida") {
           let categoryScore = data.categories[i].score_out_of_10.toFixed(2);
           $("#quality-of-life-table").append(
             `<tr style='background-color: ${categoryColor}'><td>` +
-              categoryName +
-              "</td>><td>" +
-              categoryColor +
-              "</td>><td>" +
-              categoryScore +
-              "</td>></tr>"
+            categoryName +
+            "</td>><td>" +
+            categoryColor +
+            "</td>><td>" +
+            categoryScore +
+            "</td>></tr>"
           );
         }
 
         console.log(data);
       });
   }
-
->>>>>>> 900bb274fc5d3144ecacc4724f3ccefb722f2ed0
 }
 
 //fire search on click. Consider changing to submit to allow searching with Enter or click
 $(searchBox).on("click", formSubmitHandler);
 
-
-
->>>>>>> 900bb274fc5d3144ecacc4724f3ccefb722f2ed0
->>>>>>> main
