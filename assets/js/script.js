@@ -121,6 +121,8 @@ function formSubmitHandler(event) {
 
         $("#quality-of-life-table").empty();
 
+        let summary = data.summary
+        $('#city-summary').html(summary)
         for (let i = 0; i < data.categories.length; i++) {
           console.log(data.categories[i].name);
 
