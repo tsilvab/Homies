@@ -64,7 +64,11 @@
               <div class="error-meessage hide">You must select a city from the list</div>
             </label>
 
+            
+
           
+
+            
               <button type="button" id="search-now" class="button">Search</button>
         
           </div>
@@ -75,7 +79,10 @@
   </div>
 
   <div class="row">
-    <div class="callout secondary">
+    <div id="results" class="callout secondary">
+      <div class="row">
+        <div id="city-summary"class="small-12 large-12 columns"></div>
+        </div>
       <div class="row">
         <div class="large-6 small-12 columns">
           <div id="job-results" class="callout secondary">
@@ -83,6 +90,7 @@
               <div class="columns">
                 <table id="job-table" class="unstriped">
                   <thead>
+                    <tr><h4 style="text-align: center;">Jobs</h4></tr>
                     <tr>
                       <th id="job-title" width="300">Job Title</th>
                       <th id="job-agency" width="150">Agency</th>
@@ -101,9 +109,10 @@
         </div>
         <div class="large-6 small-12 columns">
           <div id="qof-results" class="callout secondary">
-            <div id="city-summary"></div>
+            <div ></div>
             <table id="job-table" class="unstriped">
               <thead>
+                <tr><h4 style="text-align: center;">Quality of Life</h4></tr>
                 <tr>
                   <th id="quality-category-name" width="300">Category</th>
                   <th id="quality-category-color" width="300">Color</th>

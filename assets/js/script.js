@@ -9,6 +9,8 @@ let outputLocation2 = "";
 let jobsUrl = "";
 let link = null;
 
+//hide results container on load
+$('#results').hide();
 // jquery function to auto complete the Location field with a predefined list of 25 locations
 $(function () {
   let majorCities = [
@@ -47,6 +49,7 @@ $(function () {
 //function to capture both keyword and location search inputs and then construct two urls one for each api and later run those get api functions in sub functions
 function formSubmitHandler(event) {
   event.preventDefault();
+  $('#results').show();
   let outputKeyword = inputKeyword.value.trim();
   inputKeyword.value = "";
   let outputLocation = inputLocation.value.trim().toLowerCase();
