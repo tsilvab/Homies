@@ -13,7 +13,6 @@ let link = null;
 
 // jquery function to auto complete the Location field with a predefined list of 25 locations
 $(function () {
-
   let majorCities = [
     "Atlanta, Georgia",
     "Austin, Texas",
@@ -40,30 +39,29 @@ $(function () {
     "Seattle, Washington",
     "Tampa, Florida",
     "Washington, District of Columbia",
-  ]
+  ];
 
-  $('#major-cities').autocomplete({
+  $("#major-cities").autocomplete({
     source: majorCities,
   });
-})
-
+});
 
 //function to capture both keyword and location search inputs and then construct two urls one for each api and later run those get api functions in sub functions
 function formSubmitHandler(event) {
   event.preventDefault();
   let outputKeyword = inputKeyword.value.trim();
-  inputKeyword.value = '';
+  inputKeyword.value = "";
   let outputLocation = inputLocation.value.trim().toLowerCase();
-  inputLocation.value = '';
+  inputLocation.value = "";
 
   // //construct URL for USA Jobs API
-  let requestUrl1 = (usajobsUrl + outputKeyword + "&LocationName=" + outputLocation);
+  let requestUrl1 =
+    usajobsUrl + outputKeyword + "&LocationName=" + outputLocation;
 
-  // //construct URL for Teleport API by first manipulating the outputLocation var to remove coma and everything after it using substring string method; otherwise teleport url would fail. This worked for 14 of 25 cities. For 8 cities with multi word names, we added a .replace string method to replace the space with - which teleport url requires.  To handle DC, Tampa, SF which have weird URLS that are not exactly dervied from the name, we created three if else statements 
+  // //construct URL for Teleport API by first manipulating the outputLocation var to remove coma and everything after it using substring string method; otherwise teleport url would fail. This worked for 14 of 25 cities. For 8 cities with multi word names, we added a .replace string method to replace the space with - which teleport url requires.  To handle DC, Tampa, SF which have weird URLS that are not exactly dervied from the name, we created three if else statements
   if (outputLocation === "san francisco, california") {
     outputLocation2 = "san-francisco-bay-area";
-  }
-  else if (outputLocation === "tampa, florida") {
+  } else if (outputLocation === "tampa, florida") {
     outputLocation2 = "tampa-bay-area";
   } else if (outputLocation === "washington, district of columbia") {
     outputLocation2 = "washington-dc";
@@ -94,16 +92,19 @@ function formSubmitHandler(event) {
       .then(function (data) {
         console.log(data);
 
-        //For Loop to capture job title, agency and url          
+        //For Loop to capture job title, agency and url
         let searchResults = data.SearchResult.SearchResultItems;
         for (let i = 0; i < searchResults.length; i++) {
-          let jobsTitle = searchResults[i].MatchedObjectDescriptor.PositionTitle;
-          let jobsAgency = searchResults[i].MatchedObjectDescriptor.OrganizationName;
+          let jobsTitle =
+            searchResults[i].MatchedObjectDescriptor.PositionTitle;
+          let jobsAgency =
+            searchResults[i].MatchedObjectDescriptor.OrganizationName;
           jobsUrl = searchResults[i].MatchedObjectDescriptor.PositionURI;
 
           //Render job title, agency to job search results table. Render url in next function so we build a friendly url
-          $('#job-table').append(`<tr><td>${jobsTitle}</td><td>${jobsAgency}</td><td class="link-td"><a class="view-job" href="${jobsUrl}" target = "_blank">View Job</a></td></tr>`);
-
+          $("#job-table").append(
+            `<tr><td>${jobsTitle}</td><td>${jobsAgency}</td><td class="link-td"><a class="view-job" href="${jobsUrl}" target = "_blank">View Job</a></td></tr>`
+          );
         }
       });
   }
@@ -121,33 +122,30 @@ function formSubmitHandler(event) {
 
         $("#quality-of-life-table").empty();
 
-        let summary = data.summary
-        $('#city-summary').html(summary)
+        let summary = data.summary;
+        $("#city-summary").html(summary);
         for (let i = 0; i < data.categories.length; i++) {
           console.log(data.categories[i].name);
 
           let categoryName = data.categories[i].name;
           let categoryColor = data.categories[i].color;
 
-          let categoryScore = data.categories[i].score_out_of_10.toFixed(2);
+          let categoryScore = data.categories[i].score_out_of_10.toFixed();
           $("#quality-of-life-table").append(
             `<tr style='background-color: ${categoryColor}'><td>` +
-            categoryName +
-            "</td>><td>" +
-            categoryColor +
-            "</td>><td>" +
-            categoryScore +
-            "</td>></tr>"
+              categoryName +
+              "</td>><td>" +
+              categoryColor +
+              "</td>><td>" +
+              categoryScore +
+              "</td>></tr>"
           );
         }
 
         console.log(data);
       });
   }
-
 }
 
 //fire search on click. Consider changing to submit to allow searching with Enter or click
 $(searchBox).on("click", formSubmitHandler);
-
-
