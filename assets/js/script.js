@@ -93,6 +93,7 @@ function formSubmitHandler(event) {
         return response.json();
       })
       .then(function (data) {
+        $("#jobs-body").empty();
         console.log(data);
 
         //For Loop to capture job title, agency and url          
@@ -103,7 +104,12 @@ function formSubmitHandler(event) {
           jobsUrl = searchResults[i].MatchedObjectDescriptor.PositionURI;
 
           //Render job title, agency to job search results table. Render url in next function so we build a friendly url
-          $('#job-table').append(`<tr><td>${jobsTitle}</td><td>${jobsAgency}</td><td class="link-td"><a class="view-job" href="${jobsUrl}" target = "_blank">View Job</a></td></tr>`);
+          $('#job-table').append(
+            `<tr><td>
+            ${jobsTitle}
+            </td><td>
+            ${jobsAgency}
+            </td><td class="link-td"><a class="view-job" href="${jobsUrl}" target = "_blank">View Job</a></td></tr>`);
 
         }
       });
@@ -116,20 +122,15 @@ function formSubmitHandler(event) {
         return response.json();
       })
       .then(function (data) {
-        console.log("My Quality of Life");
-
-        console.log(data.categories.length);
-
         $("#quality-of-life-table").empty();
-
+        console.log(data);
+        
         let summary = data.summary
         $('#city-summary').html(summary)
         for (let i = 0; i < data.categories.length; i++) {
-          console.log(data.categories[i].name);
 
           let categoryName = data.categories[i].name;
           let categoryColor = data.categories[i].color;
-
           let categoryScore = data.categories[i].score_out_of_10.toFixed(2);
           $("#quality-of-life-table").append(
             `<tr style='background-color: ${categoryColor}'><td>` +
@@ -142,7 +143,7 @@ function formSubmitHandler(event) {
           );
         }
 
-        console.log(data);
+        // console.log(data);
       });
   }
 
