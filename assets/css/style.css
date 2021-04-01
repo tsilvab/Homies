@@ -7,15 +7,8 @@
   width: 100%;
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+footer {
+  text-align: center;
 }
 
 .fa {
@@ -47,4 +40,8 @@
 }
 .homies {
   color: black;
+}
+button {
+  float: right;
+  padding-right: 25px;
 }
