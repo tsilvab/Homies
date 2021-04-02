@@ -84,11 +84,11 @@ function formSubmitHandler(event) {
     usajobsUrl + outputKeyword + "&LocationName=" + outputLocation;
 
   // //construct URL for Teleport API by first manipulating the outputLocation var to remove coma and everything after it using substring string method; otherwise teleport url would fail. This worked for 14 of 25 cities. For 8 cities with multi word names, we added a .replace string method to replace the space with - which teleport url requires.  To handle DC, Tampa, SF which have weird URLS that are not exactly dervied from the name, we created three if else statements
-  if (outputLocation === "san francisco, california") {
+  if (outputLocation === "San Francisco, California") {
     outputLocation2 = "san-francisco-bay-area";
-  } else if (outputLocation === "tampa, florida") {
+  } else if (outputLocation === "Tampa, Florida") {
     outputLocation2 = "tampa-bay-area";
-  } else if (outputLocation === "washington, district of columbia") {
+  } else if (outputLocation === "Washington, District of Columbia") {
     outputLocation2 = "washington-dc";
   } else {
     outputLocation2 = outputLocation
