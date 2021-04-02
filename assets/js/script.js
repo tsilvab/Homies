@@ -10,7 +10,28 @@ let jobsUrl = "";
 let link = null;
 
 //hide results container on load
-$('#results').hide();
+$("#results").hide();
+
+//code to retrieve local storage if it exists. We look for those three items in local storage and if present we render them to the screen in the html div with id = historyDiv. Note span element makes test look uneven. If no keywords exist, then we hide the entire DIV. For the last visit date we used moment.js to format into mm/dd/yyyy
+
+let lastKeyword = localStorage.getItem("lastKeyword");
+if (lastKeyword) {
+  console.log(lastKeyword);
+  $("#last-visit-keyword").append(lastKeyword);
+}
+let lastLocation = localStorage.getItem("lastLocation");
+if (lastLocation) {
+  console.log(lastLocation);
+  $("#last-visit-location").append(lastLocation);
+}
+let lastVisit = localStorage.getItem("lastDate");
+if (lastVisit) {
+  console.log(lastVisit);
+  let lastVisitFormatted = moment(lastVisit).format("MM/DD/YYYY");
+  $("#last-visit-date").append(lastVisitFormatted);
+} else {
+  $("#history-div").hide();
+}
 // jquery function to auto complete the Location field with a predefined list of 25 locations
 $(function () {
   let majorCities = [
@@ -49,11 +70,14 @@ $(function () {
 //function to capture both keyword and location search inputs and then construct two urls one for each api and later run those get api functions in sub functions
 function formSubmitHandler(event) {
   event.preventDefault();
-  $('#results').show();
+  $("#results").show();
   let outputKeyword = inputKeyword.value.trim();
+  localStorage.setItem("lastKeyword", outputKeyword);
   inputKeyword.value = "";
-  let outputLocation = inputLocation.value.trim().toLowerCase();
+  let outputLocation = inputLocation.value.trim();
+  localStorage.setItem("lastLocation", outputLocation);
   inputLocation.value = "";
+  localStorage.setItem("lastDate", new Date());
 
   // //construct URL for USA Jobs API
   let requestUrl1 =
@@ -68,6 +92,7 @@ function formSubmitHandler(event) {
     outputLocation2 = "washington-dc";
   } else {
     outputLocation2 = outputLocation
+      .toLowerCase()
       .substring(0, outputLocation.indexOf(","))
       .replace(/ /, "-")
       .replace(/ /, "-");
@@ -105,14 +130,13 @@ function formSubmitHandler(event) {
 
           //Render job title, agency to job search results table. Render url in next function so we build a friendly url
 
-          $('#job-table').append(
+          $("#job-table").append(
             `<tr><td>
             ${jobsTitle}
             </td><td>
             ${jobsAgency}
-            </td><td class="link-td"><a class="view-job" href="${jobsUrl}" target = "_blank">View Job</a></td></tr>`);
-
-
+            </td><td class="link-td"><a class="view-job" href="${jobsUrl}" target = "_blank">View Job</a></td></tr>`
+          );
         }
       });
   }
@@ -127,41 +151,34 @@ function formSubmitHandler(event) {
         $("#quality-of-life-table").empty();
 
         console.log(data);
-        
-        let summary = data.summary
-        $('#city-summary').html(summary)
+
+        let summary = data.summary;
+        $("#city-summary").html(summary);
 
         for (let i = 0; i < data.categories.length; i++) {
-
           let categoryName = data.categories[i].name;
           let categoryColor = data.categories[i].color;
-
 
           let categoryScore = data.categories[i].score_out_of_10.toFixed();
 
           $("#quality-of-life-table").append(
-            `<tr style='background-color: ${categoryColor}'><td>` +
+            `<tr><td  style='background-color: ${categoryColor}; color: white; font-weight: bolder;'>` +
               categoryName +
-              "</td>><td>" +
-              categoryColor +
-              "</td>><td>" +
+              "</td>><td style='text-align: center;'>" +
               categoryScore +
-              "</td>></tr>"
+              "</td></tr>"
           );
         }
-
-        // console.log(data);
       });
   }
 }
 
-//fire search on click. Consider changing to submit to allow searching with Enter or click
+//fire search on click.
 $(searchBox).on("click", formSubmitHandler);
 
-
-// Execute a function when the user releases a key on the keyboard
+// Execute a function when the user presses enter on the keyboard.
 var input = document.getElementById("major-cities");
-input.addEventListener("keyup", function(event) {
+input.addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
     // Cancel the default action, if needed
@@ -170,4 +187,3 @@ input.addEventListener("keyup", function(event) {
     document.getElementById("search-now").click();
   }
 });
-

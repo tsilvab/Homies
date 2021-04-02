@@ -14,13 +14,13 @@
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 
   <title>Homies Jobs & Quality of Life App</title>
 </head>
 
 <body>
-  <header class="hero" style="background-image: url(https://tsilvab.github.io/Homies/assets/images/Homies.jpg);">
+  <header class="hero" style="background-image: url(https://tsilvab.github.io/Homies/assets/images/img_mouseover3.jpg);">
     <h1 class="app-title">
       <!-- The `<i>` element is for icons. These classes come from the Font Awesome font icon library. -->
       <!-- <i style="color:white" class="fas fa-cloud-sun"></i>  -->
@@ -33,15 +33,8 @@
   <div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small">
   </div>
 
-  <!-- <div class="top-bar" id="realEstateMenu">
-    <div class="top-bar-left">
-      <img class="cover-photo" src="../assets/images/Homies.jpg" alt="Welcome">
-
-    </div> -->
-
   </div>
-  <!-- /Navigation -->
-
+ 
   <br>
 
   <div class="row">
@@ -50,6 +43,8 @@
       <h5>Job results are powered by <a href="usajobs.gov" target="_blank">USAJobs.gov</a> API, while quality of life data is provided by <a href="https://teleport.org/" target="_blank">Teleport.org</a> API.</h5>  
     <br>
     <h5>Let's help you <strong>Work Hard and Live Happy!</strong>. Start by searching for a job by <em>keyword</em> and <em>location</em>.</h5>
+   <div id="history-div">You last visited on <span id="last-visit-date"></span>.You last searched for keyword <span id= "last-visit-keyword"></span> in location <span id="last-visit-location"></span></div>
+   <br>
     <div class="callout secondary">
       <form id="form">
         <div class="row">
@@ -64,11 +59,7 @@
               <div class="error-meessage hide">You must select a city from the list</div>
             </label>
 
-            
-
           
-
-            
               <button type="button" id="search-now" class="button">Search</button>
         
           </div>
@@ -99,11 +90,7 @@
                     </tr>
                   </thead>
                   <tbody id="jobs-body">
-                    <!-- <tr>
-                      <td>Content Goes Here</td>
-                      <td>Content Goes Here</td>
-                      <td>Content Goes Here</td>
-                    </tr> -->
+                   
                   </tbody>
                 </table>
 
@@ -121,16 +108,12 @@
                 <tr><h4 style="text-align: center;">Quality of Life</h4></tr>
                 <tr>
                   <th id="quality-category-name" width="300">Category</th>
-                  <th id="quality-category-color" width="300">Color</th>
-                  <th id="quality-category-score" width="300">Score</th>
+             
+                  <th id="quality-category-score" width="300" style='text-align: center;'>Score</th>
                 </tr>
               </thead>
               <tbody id="quality-of-life-table">
-                <!-- <tr>
-                  <td>Content Goes Here</td>
-                  <td>Content Goes Here</td>
-                  <td>Content Goes Here</td>
-                </tr> -->
+               
               </tbody>
             </table>
           </div>
