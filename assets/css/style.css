@@ -1,11 +1,6 @@
 * {
   padding: 1px;
 }
-.cover-photo {
-  object-fit: cover;
-  height: 200px;
-  width: 100%;
-}
 
 footer {
   text-align: center;
@@ -44,4 +39,17 @@ footer {
 button {
   float: right;
   padding-right: 25px;
+}
+
+#history-div {
+  background-color: chartreuse;
+}
+#last-visit-date {
+  font-weight: bold;
+}
+#last-visit-keyword {
+  font-weight: bold;
+}
+#last-visit-location {
+  font-weight: bold;
 }
